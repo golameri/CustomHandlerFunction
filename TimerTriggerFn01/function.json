@@ -1,0 +1,18 @@
+{
+  "bindings": [
+    {
+      "name": "myTimer",
+      "type": "timerTrigger",
+      "direction": "in",
+      "schedule": "0 */1 * * * *"
+    },
+    
+    {
+      "type": "queue",
+      "name": "message",
+      "direction": "out",
+      "queueName": "Queue-name", 
+      "connection": "AzureWebJobsStorage"
+    }
+  ]
+}
