@@ -6,4 +6,4 @@ This sample demonstrates how to use [Azure functions custom handlers](https://do
 
 # Timer Trigger Function
 
-In this sample we use a timer trigger function to run on a schedule and execute a PHP script. This script will query a SQL database and read data from it. The output of the function will be a message created in a queue.
+In this sample we use a timer trigger function to run on a schedule and execute a PHP script. This script will query a SQL database and read data from it. The output of the function will be a message that will be sent to a queue.
