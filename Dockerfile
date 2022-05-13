@@ -4,8 +4,6 @@ ENV AzureWebJobsScriptRoot=/home/site/wwwroot \
     AzureFunctionsJobHost__Logging__Console__IsEnabled=true \
     ACCEPT_EULA=Y
 
-
-RUN apt-get update
 RUN apt-get update 
 RUN apt-get install -y lsb-release
 RUN curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
@@ -20,7 +18,6 @@ RUN curl https://packages.microsoft.com/config/debian/10/prod.list > /etc/apt/so
 RUN exit
 RUN apt-get update
 
-RUN ACCEPT_EULA=Y apt-get install -y msodbcsql18
 RUN ACCEPT_EULA=Y apt-get install -y msodbcsql18
 RUN echo 'export PATH="$PATH:/opt/mssql-tools18/bin"' >> ~/.bashrc
 RUN apt-get install -y unixodbc-dev
@@ -37,7 +34,5 @@ RUN printf "; priority=30\nextension=pdo_sqlsrv.so\n" > /etc/php/8.1/mods-availa
 RUN exit
 RUN pecl channel-update pecl.php.net
 RUN phpenmod -v 8.1 sqlsrv pdo_sqlsrv
-
-
 
 COPY . /home/site/wwwroot
