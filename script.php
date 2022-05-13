@@ -1,16 +1,15 @@
 <?php
-      $serverName = "SQL-Server-Name"; // update me
-      $connectionOptions = array(
-          "Database" => "Database-Name", // update me
-          "UID" => "Username", // update me
-          "PWD" => "Password" // update me
-      );
+     $serverName = "SQL-Server-Name"; // update me
+     $connectionOptions = array(
+         "Database" => "Database-Name", // update me
+         "UID" => "Username", // update me
+         "PWD" => "Password" // update me
+     );
       //Establishes the connection
       $conn = sqlsrv_connect($serverName, $connectionOptions);
       $tsql1= "SELECT [Name], [LastName] FROM [dbo].[INFO]";
       $tsql2 = "INSERT INTO dbo.Log (Description) VALUES ('Function executed successfully.')";
       $getResults= sqlsrv_query($conn, $tsql1);
-
       if ($getResults == FALSE)
            echo (sqlsrv_errors());
 
