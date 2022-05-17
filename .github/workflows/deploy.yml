@@ -1,0 +1,55 @@
+name: Build a Docker image and Push it to ACR - Create Azure function with custom image - Create sql database
+env:
+  RESOURCEGROUP: customhandlerfn-rg-01
+  AZURE_STORAGEACCOUNT_NAME: tek2jsevi7yqifnsta #replace with your function storage account
+  AZURE_APPSERVICEPLAN_NAME: tek2jsevi7yqifnsta #replace with app service plan name
+  AZURE_ACR_NAME: tek2jsevi7yqiacr #replace with Azure container registery name
+  SQL_SERVERNAME: ${{ secrets.AZURE_SQLSERVER_NAME }}
+  SQL_DATABASE_NAME: ${{ secrets.SQL_DATABASE }} 
+  SQL_USERNAME: ${{ secrets.AZURE_SQL_USERNAME }}
+  SQL_PASSWORD: ${{ secrets.AZURE_SQL_PASSWORD }}
+on:
+  push:
+    branches: main
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Checkout
+        uses: actions/checkout@v1
+   
+      - name: Build and push Docker image
+        uses: azure/docker-login@v1
+        with:
+          login-server: ${{ env.AZURE_ACR_NAME }}.azurecr.io
+          username: ${{ secrets.ACR_USERNAME }}
+          password: ${{ secrets.ACR_PASSWORD }}
+
+      - run: |
+          docker build . -t ${{ env.AZURE_ACR_NAME }}.azurecr.io/customhandlerfn:${{ github.sha }}
+          docker push ${{ env.AZURE_ACR_NAME }}.azurecr.io/customhandlerfn:${{ github.sha }}
+       
+      - name: Run SQL scripts
+      - uses: azure/sql-action@v1.2
+        with:        
+          connection-string: ${{ secrets.AZURE_SQL_CONNECTION_STRING }}
+          sql-file: './sqlscripts/*.sql'
+          
+      
+      - name: Azure CLI script file
+        uses: azure/CLI@v1
+        with:
+          azcliversion: 2.30.0
+          inlineScript: |
+          az functionapp create --name phpcustomhandlerfn01 --runtime dotnet --functions-version 4 --storage-account ${{ env.AZURE_STORAGEACCOUNT_NAME }} --resource-group ${{ env.RESOURCEGROUP }} --plan ${{ env.AZURE_APPSERVICEPLAN_NAME }} --deployment-container-image-name ${{ env.AZURE_ACR_NAME }}.azurecr.io/customhandlerfn:${{ github.sha }}
+          
+      
+          
+          
