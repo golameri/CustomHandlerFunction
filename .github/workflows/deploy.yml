@@ -2,7 +2,7 @@ name: Deploy function with custom image
 env:
   RESOURCEGROUP: customhandlerfn-rg-01
   AZURE_STORAGEACCOUNT_NAME: tek2jsevi7yqifnsta #replace with your function storage account
-  AZURE_APPSERVICEPLAN_NAME: tek2jsevi7yqifnsta #replace with app service plan name
+  AZURE_APPSERVICEPLAN_NAME: tek2jsevi7yqi-asp #replace with app service plan name
   AZURE_ACR_NAME: tek2jsevi7yqiacr #replace with Azure container registery name
   SQL_SERVERNAME: ${{ secrets.AZURE_SQLSERVER_NAME }}
   SQL_DATABASE_NAME: ${{ secrets.SQL_DATABASE }} 
