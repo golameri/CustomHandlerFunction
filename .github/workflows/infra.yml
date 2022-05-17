@@ -8,7 +8,7 @@ jobs:
 
     env:
       DEPLOYMENT_NAME: customhandlerfunction-deployment
-      RESOURCE_GROUP_NAME: customhandlerfn-rg
+      RESOURCE_GROUP_NAME: customhandlerfn-rg-01
       LOCATION: 'canadacentral' # You can change this to reflect the region where you deploy your ASE
 
     runs-on: ubuntu-latest
