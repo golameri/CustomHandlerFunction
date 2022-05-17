@@ -48,7 +48,7 @@ jobs:
         with:
           azcliversion: 2.30.0
           inlineScript: |
-          az functionapp create --name phpcustomhandlerfn01 --runtime dotnet --functions-version 4 --storage-account ${{ env.AZURE_STORAGEACCOUNT_NAME }} --resource-group ${{ env.RESOURCEGROUP }} --plan ${{ env.AZURE_APPSERVICEPLAN_NAME }} --deployment-container-image-name ${{ env.AZURE_ACR_NAME }}.azurecr.io/customhandlerfn:${{ github.sha }}
+           az functionapp create --name phpcustomhandlerfn01 --runtime dotnet --functions-version 4 --storage-account ${{ env.AZURE_STORAGEACCOUNT_NAME }} --resource-group ${{ env.RESOURCEGROUP }} --plan ${{ env.AZURE_APPSERVICEPLAN_NAME }} --deployment-container-image-name ${{ env.AZURE_ACR_NAME }}.azurecr.io/customhandlerfn:${{ github.sha }}
           
       
           
