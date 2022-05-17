@@ -42,5 +42,13 @@ jobs:
           connection-string: ${{ secrets.AZURE_SQL_CONNECTION_STRING }}
           sql-file: './SqlScripts/*.sql'
           
+      - name: Azure CLI script file
+        uses: azure/CLI@v1
+        with:
+          azcliversion: 2.30.0
+          inlineScript: |
+             az functionapp create --name phpcustomhandlerfn01 --runtime dotnet --functions-version 4 --storage-account ${{ env.AZURE_STORAGEACCOUNT_NAME }} --resource-group ${{ env.RESOURCEGROUP }} --plan ${{ env.AZURE_APPSERVICEPLAN_NAME }} --deployment-container-image-name ${{ env.AZURE_ACR_NAME }}.azurecr.io/customhandlerfn:${{ github.sha }}
+          
+          
     
           
