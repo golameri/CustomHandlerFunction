@@ -1,16 +1,16 @@
 # To enable ssh & remote debugging on app service change the base image to the one below
 FROM mcr.microsoft.com/azure-functions/dotnet:4-appservice 
-ARG ServerName \
-    DatabaseName \
-    Username \
-    Password
+# ARG ServerName \
+#     DatabaseName \
+#     Username \
+#     Password
 ENV AzureWebJobsScriptRoot=/home/site/wwwroot \
     AzureFunctionsJobHost__Logging__Console__IsEnabled=true \
     ACCEPT_EULA=Y \
-    SQL_ServerName=$ServerName \
-    SQL_DatabaseName=$DatabaseName \
-    SQL_Username=$Username \
-    SQL_Password=$Password
+    SQL_ServerName=tek2jsevi7yqi-sqlserver \
+    SQL_DatabaseName=db01\
+    SQL_Username=sqladmin \
+    SQL_Password=Xx123456
      
 RUN apt-get update 
 RUN apt-get install -y lsb-release
