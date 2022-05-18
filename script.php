@@ -1,9 +1,9 @@
 <?php
-     $serverName = "SQL-Server-Name"; // update me
+     $serverName = $_ENV["SQL_ServerName"]; // update me
      $connectionOptions = array(
-         "Database" => "Database-Name", // update me
-         "UID" => "Username", // update me
-         "PWD" => "Password" // update me
+         "Database" => $_ENV["SQL_DatabaseName"], // update me
+         "UID" => $_ENV["SQL_Username"], // update me
+         "PWD" => $_ENV["SQL_Password"] // update me
      );
       //Establishes the connection
       $conn = sqlsrv_connect($serverName, $connectionOptions);
