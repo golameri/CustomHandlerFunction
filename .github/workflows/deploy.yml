@@ -33,7 +33,7 @@ jobs:
           password: ${{ secrets.ACR_PASSWORD }}
 
       - run: |
-          docker build . -t ${{ env.AZURE_ACR_NAME }}.azurecr.io/customhandlerfn:${{ github.sha }}
+          docker build . -t ${{ env.AZURE_ACR_NAME }}.azurecr.io/customhandlerfn:${{ github.sha }} --build-arg ServerName=${{ secrets.AZURE_SQLSERVER_NAME }} --build-arg DatabaseName=${{ secrets.SQL_DATABASE }} --build-arg Username=${{ secrets.AZURE_SQL_USERNAME }} --build-arg Password=${{ secrets.AZURE_SQL_PASSWORD }}
           docker push ${{ env.AZURE_ACR_NAME }}.azurecr.io/customhandlerfn:${{ github.sha }}
        
       - name: Run SQL scripts
