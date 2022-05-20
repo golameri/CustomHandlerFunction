@@ -10,7 +10,7 @@ In this sample we use a timer trigger function to run on a schedule and execute 
 
 # To use this repository  
 
-Clone this repository locally.
+Clone this repository.
 
 ### 1. Create a service principal
 
