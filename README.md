@@ -32,19 +32,20 @@ Copy the JSON object for your service principal.
         (...)
      }
 Open your GitHub repository and go to **Settings**.
-Select **Secrets** and then **New Secret** with the name `AZURE_CREDENTIALS`. Save by selecting **Add secret**.
+Select **Secrets** and then **New Secret** with the name `AZURE_CREDENTIALS`.Save by selecting **Add secret**.
+Add another secret with the name `AZURE_SUBSCRIPTION` with your Subscription ID.
 
-### 2. Create SQL Server secrets
+### 2. Create SQL Server and ACR secrets
 
-You'll need to create the following secrets for your SQL Server for the next steps.
-`SQL_SERVERNAME`,`SQL_DATABASE`,`SQL_USERNAME`,`SQL_PASSWORD`.
+You'll need to create the following secrets for the SQL Server and ACR for the next steps:
+`SQL_SERVERNAME`,`SQL_DATABASE`,`SQL_USERNAME`,`SQL_PASSWORD`,`ACR_USERNAME`,`ACR_PASSWORD`.
 
 ### 3. Run GitHub Actions
 
 Go to **Actions** tab in your repository and run **Create Azure Resources** workflow to create your resource group and all your resources in it.
 Note that you can change the `DEPLOYMENT_NAME`, `RESOURCE_GROUP_NAME`, `LOCATION` in this workflow to reflect your location and naming convention.
 
-After your resources are created, you can get the name of `AZURE_STORAGEACCOUNT_NAME` for your function, `AZURE_APPSERVICEPLAN_NAME`, `AZURE_ACR_NAME` and replace them in the deploy.yaml file in .github/workflows folder. You can run the next workflow, which is called **Deploy function with custom image** to create your function.
+After your resources are created, you can get the name of `AZURE_STORAGEACCOUNT_NAME` for your function, `AZURE_APPSERVICEPLAN_NAME`, `AZURE_ACR_NAME` and replace them in the deploy.yaml file in .github/workflows folder.Run the next workflow, which is called **Deploy function with custom image** to create your function.
 
 ### 4. Update Application Settings 
 
